@@ -1,0 +1,66 @@
+<nav class="navbar navbar-default"> 
+<div class="container">
+	<div class="navbar-header">
+	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	<a class="navbar-brand" href="{{ path('homepage') }}">
+	<img src="{{ asset('public/img/logocochelimpio.png') }}" style="width:200px; height: 55px; margin-top: -15px;">
+	</a>
+	</div>
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav navbar-right">
+		{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+		<li style="margin-top: 5px;"><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+		<li style="margin-top: 5px;"><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+		</li>
+		{% endif %}
+		<li style="padding-top: -5px;">
+		<a href="{{ path('reserva_turnopar_new') }}">
+		<button type="button" class="btn btn-reserva btn-sm">
+		<span class="glyphicon glyphicon-text-width" aria-hidden="true"></span>
+		<span>Reservar Turno</span>
+		</button>
+		</a>
+		</li>
+		{% if is_granted('ROLE_CORPORATIVO') %}
+		<li style="padding-top: -5px;">
+		<a href="{{ path('corporativo_plan_new') }}">
+		<button type="button" class="btn btn-reserva btn-sm">
+		<span class="glyphicon glyphicon-text-width" aria-hidden="true"></span>
+		<span>Nuevo Plan</span>
+		</button>
+		</a>
+		</li>
+
+		<li style="padding-top: -5px;">
+		<a href="{{ path('corporativo_plan_index') }}">
+		<button type="button" class="btn btn-reserva btn-sm">
+		<span class="glyphicon glyphicon-text-width" aria-hidden="true"></span>
+		<span>Planes</span>
+		</button>
+		</a>
+		</li>
+		{% endif %}
+		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		 <li class="dropdown" style="margin-top: 5px;">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{app.user}} <span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          	<li><a href="{{ path('reserva_turnopar_index') }}">Ver mis turnos</a></li>
+          	<li><a href="{{ path('reserva_turnopar_index_completo') }}">Informe de turnos</a></li>
+          	<li role="separator" class="divider"></li>
+            <li><a href="{{ path('fos_user_profile_edit') }}">Editar perfil</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+			</li>
+          </ul>
+        </li>
+		{% endif %}
+		</ul>
+		
+	</div>
+</div>
+</nav>

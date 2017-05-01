@@ -1,0 +1,30 @@
+
+    <nav class="text-center">
+      <ul class="pagination">
+        <li>  
+          {% if page > 0 %}  
+          <a href="{{ page - 1 }}" aria-label="Previous">
+          {% else %}
+          <li class="disabled"><a href="#" aria-label="Previous">
+          {% endif %}
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% for i in 0..pages %}
+            {% if i == page %}
+            <li class="active"><a href="{{ i }}">{{ i }}</a></li>
+            {% else %}
+            <li><a href="{{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        <li>
+            {% if page < pages-1 %}  
+            <a href="{{ page + 1 }}" aria-label="Next">
+            {% else %}
+            <li class="disabled"><a href="#" aria-label="Next">
+            {% endif %}   
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>

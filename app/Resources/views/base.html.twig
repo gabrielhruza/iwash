@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Cochelimpio - Lavadero{% endblock %}</title>
+        
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('public/css/bootstrap.min-default.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/css/styles.css') }}" />
+{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('public/img/cochelimpio.ico') }}" />
+    </head>
+    <body>
+        {% block body %}
+        
+        {{ include('default/header.html.twig') }}
+
+        
+        {% block portada %}
+        {{ include('default/portada.html.twig')}}
+        {% endblock %}
+       
+
+        {% block servicios %}
+        <div class="container servicios">
+        {{ include('default/servicios.html.twig')}}
+        </div>
+        {% endblock %}
+
+        {{ include('default/footer.html.twig')}}
+
+        {% endblock %}
+
+        {% block javascripts %}
+        <script src="{{ asset('public/js/jquery-2.2.3.js') }}"></script>
+        <script src="{{ asset('public/js/bootstrap.min.js') }}"></script> 
+        {% endblock %}
+    </body>
+</html>

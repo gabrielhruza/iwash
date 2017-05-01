@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block portada %}
+<div class="container login">
+    <h1>Lista de turnos</h1>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Patente</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Centro Integral</th>
+                <th>Dirección Particular</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for turnoPar in turnoPars %}
+            <tr>
+                <td>{{ turnoPar.patente | upper }}</td>
+                <td>{% if turnoPar.fecha %}{{ turnoPar.fecha|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if turnoPar.hora %}{{ turnoPar.hora|date('H:i') }}{% endif %}</td>
+                <td>Sucursal: {{ turnoPar.centrointegral.id }} {{ turnoPar.centrointegral.direccion }}</td>
+                <td>{{ turnoPar.direccion }}</td>
+                <td>{{ turnoPar.estado | upper }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    {% include('pagination.html.twig') %}
+
+</div>
+
+{% endblock %}
+
+{% block servicios %}
+{% endblock servicios %}

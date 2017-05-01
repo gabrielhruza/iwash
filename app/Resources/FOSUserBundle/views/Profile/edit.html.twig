@@ -1,0 +1,13 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock fos_user_content %}
+
+{% block servicios %}
+{% endblock servicios %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('public/js/inputmask.js') }}"></script>
+{% endblock %}

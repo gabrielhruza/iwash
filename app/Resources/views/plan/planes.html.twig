@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block portada %}
+<div class="container login"> 
+
+    <h1>Mis Planes</h1>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Número de plan</th>
+                <th>Estado</th>
+                <th>Monto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plan in plans %}
+            <tr>
+                <td><a href="{{ path('corporativo_plan_edit', { 'id': plan.id }) }}">{{ plan.id }}</a></td>
+                <td>{{ plan.estado | upper }}</td>
+                <td>{{ plan.monto }}</td>
+                <td>                    
+                    {% if plan.estado == 'aprobado' %}
+                    <a href="{{ path('corporativo_plan_planificar', { 'id': plan.id }) }}">Planificar</a>
+                    {% else %}
+                    <a href="{{ path('corporativo_plan_edit', { 'id': plan.id }) }}">Ver ó Editar</a>
+                    {% endif %}
+                    
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock portada %}
+
+{% block servicios %}
+{% endblock servicios %}

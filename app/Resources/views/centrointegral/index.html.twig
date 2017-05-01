@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>CentroIntegral list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Operarios</th>
+                <th>Direccion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for centroIntegral in centroIntegrals %}
+            <tr>
+                <td><a href="{{ path('admin_centrointegral_show', { 'id': centroIntegral.id }) }}">{{ centroIntegral.id }}</a></td>
+                <td>{{ centroIntegral.operarios }}</td>
+                <td>{{ centroIntegral.direccion }}</td>
+                
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_centrointegral_show', { 'id': centroIntegral.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_centrointegral_edit', { 'id': centroIntegral.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_centrointegral_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

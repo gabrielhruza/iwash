@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('public/js/jquery-ui/jquery-ui.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/bootstrap-tagsinput.css') }}" />
+{% endblock %}
+
+{% block portada %}
+<div class="container-fluid login" style="width:95%"> 
+
+    <h1>Planificar lavados</h1>
+    <h5><em>Se recomienda utilizar pantalla con alta resolución: notebook, pc, tablet, etc.</em></h5>
+    <h3>Flotas</h3>
+   
+    <div class="row-fluid">
+        {% for flota in plan.flotas %}
+        <div class="col-md-12 bs-callout">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Cantidad</th>    
+                      <th>Tipo de vehículo</th>
+                      <th>Tipo de lavado</th>
+                      <th>Centro integral</th>
+                      <th>Periodicidad</th>
+                    </tr>   
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ flota.cantidad }}</td>
+                      <td>{{ flota.tipovehiculo }}</td>
+                      <td>{{ flota.tipolavado }}</td>
+                      <td>{{ flota.centrointegral }}</td>
+                      <td>{{ flota.periodicidad }}</td>
+                    </tr>    
+                  </tbody>
+                </table>            
+            </div>
+            <div class="col-md-12 form-inline well well-sm" style="margin-left:13px; width:98%">
+                <div class="checkbox col-md-2">
+                    <label>
+                    <input type="checkbox"> Lunes
+                    </label>
+                
+                <select class="form-control input-sm">
+                  <option value="1">08:00</option>
+                  <option value="1">09:00</option>
+                  <option value="1">10:00</option>
+                  <option value="1">11:00</option>
+                  <option value="1">12:00</option>
+                  <option value="1">13:00 </option>
+                  <option value="1">14:00 </option>
+                  <option value="1">15:00 </option>
+                  <option value="1">16:00 </option>
+                  <option value="1">17:00 </option>
+                  <option value="1">18:00 </option>
+                  <option value="1">19:00 </option>
+                  <option value="1">20:00 </option>
+                </select>
+                </div>
+                <div class="checkbox col-md-2">
+                    <label>
+                    <input type="checkbox"> Martes
+                    </label>
+                <select class="form-control input-sm">
+                  <option value="1">08:00</option>
+                  <option value="1">09:00</option>
+                  <option value="1">10:00</option>
+                  <option value="1">11:00</option>
+                  <option value="1">12:00</option>
+                  <option value="1">13:00 </option>
+                  <option value="1">14:00 </option>
+                  <option value="1">15:00 </option>
+                  <option value="1">16:00 </option>
+                  <option value="1">17:00 </option>
+                  <option value="1">18:00 </option>
+                  <option value="1">19:00 </option>
+                  <option value="1">20:00 </option>
+                </select>
+                </div>
+                <div class="checkbox col-md-2"> 
+                    <label>
+                    <input type="checkbox"> Miércoles
+                    </label>
+                <select class="form-control input-sm">
+                  <option value="1">08:00</option>
+                  <option value="1">09:00</option>
+                  <option value="1">10:00</option>
+                  <option value="1">11:00</option>
+                  <option value="1">12:00</option>
+                  <option value="1">13:00 </option>
+                  <option value="1">14:00 </option>
+                  <option value="1">15:00 </option>
+                  <option value="1">16:00 </option>
+                  <option value="1">17:00 </option>
+                  <option value="1">18:00 </option>
+                  <option value="1">19:00 </option>
+                  <option value="1">20:00 </option>
+                </select>
+                </div>
+                <div class="checkbox col-md-2">
+                    <label>
+                    <input type="checkbox"> Jueves
+                    </label>
+                <select class="form-control input-sm">
+                  <option value="1">08:00</option>
+                  <option value="1">09:00</option>
+                  <option value="1">10:00</option>
+                  <option value="1">11:00</option>
+                  <option value="1">12:00</option>
+                  <option value="1">13:00 </option>
+                  <option value="1">14:00 </option>
+                  <option value="1">15:00 </option>
+                  <option value="1">16:00 </option>
+                  <option value="1">17:00 </option>
+                  <option value="1">18:00 </option>
+                  <option value="1">19:00 </option>
+                  <option value="1">20:00 </option>
+                </select>
+                </div>
+                <div class="checkbox col-md-2">
+                    <label>
+                    <input type="checkbox"> Viernes
+                    </label>
+                <select class="form-control input-sm">
+                  <option value="1">08:00</option>
+                  <option value="1">09:00</option>
+                  <option value="1">10:00</option>
+                  <option value="1">11:00</option>
+                  <option value="1">12:00</option>
+                  <option value="1">13:00 </option>
+                  <option value="1">14:00 </option>
+                  <option value="1">15:00 </option>
+                  <option value="1">16:00 </option>
+                  <option value="1">17:00 </option>
+                  <option value="1">18:00 </option>
+                  <option value="1">19:00 </option>
+                  <option value="1">20:00 </option>
+                </select>
+                </div>
+                <div class="checkbox col-md-2">
+                    <label>
+                    <input type="checkbox"> Sábado
+                    </label>
+                <select class="form-control input-sm">
+                  <option value="1">08:00</option>
+                  <option value="1">09:00</option>
+                  <option value="1">10:00</option>
+                  <option value="1">11:00</option>
+                  <option value="1">12:00</option>
+                  <option value="1">13:00 </option>
+                  <option value="1">14:00 </option>
+                  <option value="1">15:00 </option>
+                  <option value="1">16:00 </option>
+                  <option value="1">17:00 </option>
+                  <option value="1">18:00 </option>
+                  <option value="1">19:00 </option>
+                  <option value="1">20:00 </option>
+                </select>
+                </div>
+            </div>
+        </div>   
+        {% endfor %}
+    </div>
+    <div class="row">
+    <div class="col-md-12">
+    <a href="{{ path('corporativo_plan_index') }}" class="btn btn-warning">Cancelar</a>
+    <input class="btn btn-success" type="button" value="Guardar Planificación">
+    <input class="btn btn-primary" type="button" value="Enviar Planificación">
+    </div>
+    </div>
+
+<p></p>
+<p></p>
+<p></p>
+<p><h6>*Si está seguro de la elección, presione el botón "Enviar".</h6></p>
+<p><h6>*Si desea continuar más tarde, presione el botón "Guardar Planificación".</h6></p>
+<p><h6>*Si no desea guardar ningún cambio, presione el botón "Cancelar".</h6></p>
+</div>
+{% endblock portada %}
+
+{% block servicios %}
+{% endblock servicios %}

@@ -1,0 +1,67 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class="col-md-12">
+<h1>Loguearse en el sistema</h1>
+<br/>
+{% if error %}
+    <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal" >
+ 
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+    <div class="form-group">
+    <label for="username" class="col-sm-2 control-label">{{ 'security.login.username'|trans }}</label>
+    <div class="col-sm-4">
+    <div class="input-group">
+	<span class="input-group-addon glyphicon glyphicon-user"></span>
+    <input type="text" id="username" name="_username" class="form-control" placeholder="Ingrese nombre de usuario" value="{{ last_username }}" required="required" />
+    </div>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">{{ 'security.login.password'|trans }}</label>
+    <div class="col-sm-4">
+	    <div class="input-group">
+	    	<span class="input-group-addon glyphicon glyphicon-lock"></span>
+	    	<input type="password" id="password" name="_password" class="form-control" placeholder="Ingrese su contraseña" required="required" />
+	    </div>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
+        </label>
+      </div>
+    </div>
+  	</div>
+
+  	<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" id="_submit" name="_submit" class="btn btn-primary">{{ 'security.login.submit'|trans }}</button>
+    </div>
+  </div>
+   
+</form>
+</div>
+<div class="col-md-12">
+<hr>
+<p>Si aún no tienes una cuenta puedes crearte una!
+<a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+</p>
+</div>
+
+
+{% endblock fos_user_content %}
+
+{% block servicios %}
+{% endblock %}
+

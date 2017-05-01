@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block portada %}
+<div class="container login">
+    <h1>Tipos de Lavados</h1>
+
+        <div class="row-fluid">
+        {% for tipoLavado in tipoLavados %}
+            <div class="col-md-8 col-sm-12">         
+                <div class="bs-callout" style="padding-top:5px">
+                    <h4>{{ tipoLavado.nombre }}</h4>
+
+                    <h5>{{ tipoLavado.descripcion | raw }}</h5>
+                
+                    <h5><strong>Precio: $ {{ tipoLavado.precio }} .-</strong></h5>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+    
+{% endblock %}
+
+{% block servicios %}
+{% endblock servicios %}
+

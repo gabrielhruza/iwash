@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block portada %}
+<div class="container login"> 
+    <h1>Armar nuevo plan</h1>
+    <h5><em>Se recomienda utilizar pantalla con alta resolución: notebook, pc, tablet, etc.</em></h5>
+
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+    {{ form_start(form, { 'attr' : { 'class' : 'form-inline' } } ) }}
+        {# form_widget(form) #}
+
+         <h3>Flotas</h3>
+    <ul style="list-style:none;" class="flotas" data-prototype="{{ form_widget(form.flotas.vars.prototype)|e }}">
+        {# iterate over each existing flota and render fields: name #}
+        {% for flota in form.flotas %}
+        <li>
+            {{ form_row(flota.cantidad) }}
+            {{ form_row(flota.tipovehiculo) }}
+            {{ form_row(flota.tipolavado) }}
+            {{ form_row(flota.centrointegral) }}
+            {{ form_row(flota.periodicidad) }}
+
+        </li>
+        {% endfor %}
+
+    </ul>
+
+        <a href="{{ path('corporativo_plan_index') }}" class="btn btn-warning">Cancelar</a>
+        <button type="submit" class="btn btn-primary" value="Enviar Plan">Enviar Plan</button>
+    {# form_end(form) #}
+</div>
+{% endblock portada %}
+
+{% block servicios %}
+{% endblock servicios %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+            var $collectionHolder;
+
+            // setup an "add a flota" link
+            var $addFlotaLink = $('<a href="#" class="add_flota_link btn btn-success btn-xs">Agrega</a>');
+            var $newLinkLi = $('<li></li>').append($addFlotaLink);
+
+            jQuery(document).ready(function() {
+                // Get the ul that holds the collection of flotas
+                $collectionHolder = $('ul.flotas');
+
+                // add a delete link to all of the existing flota form li elements
+                $collectionHolder.find('li').each(function() {
+                    addFlotaFormDeleteLink($(this));
+                });
+
+                // add the "add a flota" anchor and li to the flotas ul
+                $collectionHolder.append($newLinkLi);
+
+                // count the current form inputs we have (e.g. 2), use that as the new
+                // index when inserting a new item (e.g. 2)
+                $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+                $addFlotaLink.on('click', function(e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+
+                    // add a new flota form (see next code block)
+                    addFlotaForm($collectionHolder, $newLinkLi);
+                });
+
+                function addFlotaForm($collectionHolder, $newLinkLi) {
+                // Get the data-prototype explained earlier
+                var prototype = $collectionHolder.data('prototype');
+
+                // get the new index
+                var index = $collectionHolder.data('index');
+
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm = prototype.replace(/__name__/g, index);
+
+                // increase the index with one for the next item
+                $collectionHolder.data('index', index + 1);
+
+                // Display the form in the page in an li, before the "Add a flota" link li
+                var $newFormLi = $('<li></li>').append(newForm);
+                $newLinkLi.before($newFormLi);
+                 // add a delete link to the new form
+                addFlotaFormDeleteLink($newFormLi);
+                }
+
+                function addFlotaFormDeleteLink($flotaFormLi) {
+                var $removeFormA = $('<a href="#" class="btn btn-danger btn-xs">Borrar</a>');
+                $flotaFormLi.append($removeFormA);
+
+                $removeFormA.on('click', function(e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+
+                    // remove the li for the flota form
+                    $flotaFormLi.remove();
+                });
+                }
+
+            });
+        </script> 
+{% endblock javascripts %}

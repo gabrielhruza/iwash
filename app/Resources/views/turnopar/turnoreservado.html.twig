@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="{{ asset('public/css/datepicker.css') }}">
+{% endblock %}
+
+{% block portada %}
+<div class="container login"> 
+
+<br/>
+<br/>
+<div class="row">
+    <div class="col-md-offset-2 col-xs-12 col-sm-12 col-md-8">
+        <div class="alert alert-success">
+            <h1>¡Turno reservado correctamente!</h1>
+            <h3>Dentro de unos minutos lo llamará uno de nuestros operadores para confirmar
+            la reserva, gracias! :D</h3>
+            <a href="{{ path('homepage')}}" class="btn btn-primary">Volver al INICIO</a>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block servicios %}
+{% endblock %}
